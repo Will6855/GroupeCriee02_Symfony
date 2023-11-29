@@ -1,3 +1,11 @@
-.navbar {
-    background-color: #667885
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&family=Rubik+Mono+One&display=swap');
+
+nav {
+    font-family: 'Rubik Mono One', monospace;
+    background-color: #357d78;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
 }
