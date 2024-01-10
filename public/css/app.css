@@ -3,7 +3,7 @@
 
 nav {
     font-family: 'Rubik Mono One', monospace;
-    background-color: #357d78;
+    background: linear-gradient(45deg, #357d78 50%, #7db4d2);
 }
 
 body {

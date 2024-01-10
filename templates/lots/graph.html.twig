@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des lots{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <h1>Evolution du tonnage des ventes d’une espèce sur les 6 derniers mois.</h1>
+    <label for="especes">Espèces:</label>
+    <select name="especes" id="especes">
+        {% for espece in especes %}
+            <option value="{{espece.id}}">{{espece.nom}} ({{espece.nomCourt}})</option>    
+        {% endfor %}
+    </select>
+    <div class="row">
+        <div class="col">
+            <canvas id="chart" width="300" height="100"></canvas>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block end_stylesheets %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('chart');
+  
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // Should be the 6 last months
+        datasets: [{
+            borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return context.parsed.y + " Kg";
+                    }
+                },
+            },
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    function updateChartData(newData) {
+        chart.data.label = newData.label;
+        // chart.data.labels = newData.labels;
+        chart.data.datasets[0].data = newData.data;
+        chart.update();
+    };
+
+    var data_test = {
+        2020: {
+            label: '2020',
+            // labels: ['orange', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            data: [4215, 5812, 6251, 7841, 9821, 1484, 19000, 1020, 100, 3000, 5000, 1000]
+        },
+        2021: {
+            label: '2021',
+            // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            data: [4215, 5312, 6251, 7841, 9821, 14984, 19000, 1200, 15000, 5000, 6000, 20000]
+        }};
+
+    function getDataForOption(option) {
+        if (option == {{especes[0].id}}) {
+            return data_test[2020];
+        } else if (option == {{especes[1].id}}) {
+            return data_test[2021];
+        }
+    };
+
+    function updateChartEspece() {
+        var selectedOption = document.getElementById('especes').value;
+        var newData = getDataForOption(selectedOption);
+        updateChartData(newData);
+    };
+
+    document.getElementById('especes').addEventListener('change', function() {
+        updateChartEspece();
+    });
+
+    updateChartEspece();
+
+</script>
+{% endblock %}
