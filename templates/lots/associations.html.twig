@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lots pour associations{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <h1>Liste de lot a destination des associations</h1>
+     <label for="lots">Lots:</label>
+
+<!--
+<div class="container-fluid">
+    <h1>Evolution du tonnage des ventes d’une espèce sur les 6 derniers mois.</h1>
+     <label for="especes">Espèces:</label>
+    <select name="especes" id="especes">
+        {% for espece in especes %}
+            <option value="{{espece.id}}">{{espece.nom}} ({{espece.nomCourt}})</option>    
+        {% endfor %}
+    </select>
+    <div class="row">
+        <div class="col">
+            <canvas id="chart" width="300" height="100"></canvas>
+        </div>
+    </div>
+
+</div>
+!-->
+{% endblock %}
