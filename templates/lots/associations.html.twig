@@ -4,24 +4,24 @@
 
 {% block body %}
 <div class="container-fluid">
-    <h1>Liste de lot a destination des associations</h1>
-     <label for="lots">Lots:</label>
-
-<!--
-<div class="container-fluid">
-    <h1>Evolution du tonnage des ventes d’une espèce sur les 6 derniers mois.</h1>
-     <label for="especes">Espèces:</label>
-    <select name="especes" id="especes">
-        {% for espece in especes %}
-            <option value="{{espece.id}}">{{espece.nom}} ({{espece.nomCourt}})</option>    
-        {% endfor %}
-    </select>
-    <div class="row">
-        <div class="col">
-            <canvas id="chart" width="300" height="100"></canvas>
-        </div>
+    <div class="container">
+        <h2>Tableau Simple en Bootstrap</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">N°Lot</th>
+                    <th scope="col">Associations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lot in lots %}
+                <tr>
+                    <th scope="row">{{ lot.id|default('undefined') }}</th>
+                    <td>{{lot.nomAssociation|default('undefined')}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
 </div>
-!-->
 {% endblock %}

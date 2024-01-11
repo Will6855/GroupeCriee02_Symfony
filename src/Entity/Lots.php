@@ -35,6 +35,9 @@ class Lots
     #[ORM\Column(length: 1)]
     private ?string $codeEtat = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $idAssociation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Lots
     public function setCodeEtat(string $codeEtat): static
     {
         $this->codeEtat = $codeEtat;
+
+        return $this;
+    }
+
+    public function getIdAssociation(): ?int
+    {
+        return $this->idAssociation;
+    }
+
+    public function setIdAssociation(?int $idAssociation): static
+    {
+        $this->idAssociation = $idAssociation;
 
         return $this;
     }
